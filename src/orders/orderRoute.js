@@ -15,17 +15,21 @@ router.post("/create-checkout-session", async (req, res) => {
     try {
         const lineItems = products.map((product) => ({
             price_data: {
-                currency: "usd",
+                currency: "INR",
                 product_data: {
                     name: product.name,
                     description: product.description || "",
-                    images: [`http://localhost:5173/${product.image}`]
+                    // images: ['https://res.cloudinary.com/db7jfigop/image/upload/v1744270873/p_img9_eujiah.png']
+                    images: Array.isArray(product.image)
+                    ? product.image
+                    : [String(product.image)],                
+
                 },
                 unit_amount: Math.round(product.price * 100),
             },
             quantity: product.quantity,
         }));
-        // console.log(lineItems);
+        console.log(lineItems);
 
 
 
@@ -42,7 +46,11 @@ router.post("/create-checkout-session", async (req, res) => {
         res.json({ id: session.id })
     } catch (error) {
         console.error("Error creating checkout session", error);
-        res.status(500).send({ messgae: "Failed to create checkout session" })
+        res.status(500).send({
+            message: "Failed to create checkout session",
+            error: error.message,
+            full: error
+        });
 
     }
 });
@@ -194,7 +202,7 @@ router.post("/confirm-payment", async (req, res) => {
                     email: customerEmail,  // Ensure email is sent
                     products: lineItems,     // ✅ Send the correct products array
                     totalAmount: lineItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-                    orderId: order.orderId ,
+                    orderId: order.orderId,
                     mongoOrderId: order._id.toString()
                 });
             }

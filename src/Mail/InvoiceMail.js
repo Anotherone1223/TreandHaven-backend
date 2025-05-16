@@ -24,17 +24,63 @@ const sendInvoiceEmail = async ({ email, products, totalAmount, orderId,mongoOrd
             const total = (price * quantity).toFixed(2);
 
             return `
-           <tr>
-																			<td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${index + 1}</td>
-																			<td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${item.name || "N/A"}</td>
-																			<td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${quantity}</td>
-																			<td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">₹${price.toFixed(2)}</td>
-																			<td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">₹${total}</td>
-																		</tr>
-                                                                        
+				<tr>
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; background-color: #b2c1c3; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
+													<div class="spacer_block block-1" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
+													<table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
+																<div class="alignment" align="center">
+																	<div class="fullWidth" style="max-width: 136px;"><img src="${item.image}" style="display: block; height: auto; border: 0; width: 100%;" width="136" alt="Skincare products" title="Skincare products" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<div class="spacer_block block-3" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
+												</td>
+												<td class="column column-2" width="41.666666666666664%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
+													<div class="spacer_block block-1" style="height:30px;line-height:30px;font-size:1px;">&#8202;</div>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="padding-bottom:10px;padding-left:15px;padding-right:10px;text-align:center;width:100%;">
+																<h1 style="margin: 0; color: #010101; direction: ltr; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 24px; font-weight: normal; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 29px;"><strong>${item.name || "N/A"}</strong></h1>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+														<tr>
+															<td class="pad" style="padding-bottom:10px;padding-left:15px;padding-right:10px;padding-top:10px;">
+																<div style="color:#393d47;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:14px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
+																	<p style="margin: 0; word-break: break-word;">${item.description}</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-3" width="16.666666666666668%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
+													<div class="spacer_block block-1" style="height:0px;line-height:0px;font-size:1px;">&#8202;</div>
+												</td>
+												<td class="column column-4" width="16.666666666666668%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
+													<div class="spacer_block block-1" style="height:35px;line-height:35px;font-size:1px;">&#8202;</div>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="padding-bottom:15px;padding-left:10px;padding-right:10px;text-align:center;width:100%;">
+																<h1 style="margin: 0; color: #010101; direction: ltr; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 18px; font-weight: normal; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><strong>₹${price.toFixed(2)}</strong></h1>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
             `;
         }).join('');
 
+			// <tr>
+			// 																 <td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${index + 1}</td>
+			// 																 <td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${item.name || "N/A"}</td>
+			// 																 <td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">${quantity}</td>
+			// 																 <td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">₹${price.toFixed(2)}</td>
+			// 																 <td width="20%" style="padding: 10px; word-break: break-word; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000;">₹${total}</td>
+			// 															 </tr>
 
         // <tr>
         // <td style="text-align:center;">${index + 1}</td>
@@ -51,6 +97,9 @@ const sendInvoiceEmail = async ({ email, products, totalAmount, orderId,mongoOrd
         //     </td>
         // </tr>
 
+		
+										
+										
         const emailContent = `
        <!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
@@ -175,7 +224,7 @@ const sendInvoiceEmail = async ({ email, products, totalAmount, orderId,mongoOrd
 														<tr>
 															<td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
 																<div class="alignment" align="center">
-																	<div style="max-width: 170px;"><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/mbrnypb9/eyv/lib/7ak/Black%20Beige%20Modern%20Aesthetic%20Floral%20Initial%20Clothing%20Store%20Logo%20%281%29.png" style="display: block; height: auto; border: 0; width: 100%;" width="170" alt title height="auto"></div>
+																	<div style="max-width: 170px;"><a href="http://localhost:5173/" target="_blank" style="outline:none" tabindex="-1"><img src="https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/mbrnypb9/eyv/lib/7ak/Black%20Beige%20Modern%20Aesthetic%20Floral%20Initial%20Clothing%20Store%20Logo%20%281%29.png" style="display: block; height: auto; border: 0; width: 100%;" width="170" alt title height="auto"></a></div>
 																</div>
 															</td>
 														</tr>
@@ -330,36 +379,17 @@ const sendInvoiceEmail = async ({ email, products, totalAmount, orderId,mongoOrd
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width:  1000px; margin: 0 auto;" width="680">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top;">
-													<table class="table_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad">
-																<table style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; width: 100%; table-layout: fixed; direction: ltr; background-color: transparent; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-weight: 400; color: #101112; text-align: center; letter-spacing: 0px;" width="100%">
-																	<thead style="vertical-align: top; background-color: #f2f2f2; color: #101112; font-size: 14px; line-height: 1.2; mso-line-height-alt: 17px;">
-																		<tr>
-																			<th width="20%" style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; text-align: center;">#</th>
-																			<th width="20%" style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; text-align: center;">Product</th>
-																			<th width="20%" style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; text-align: center;">Qty</th>
-																			<th width="20%" style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; text-align: center;">Price</th>
-																			<th width="20%" style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 2px solid #000000; border-right: 2px solid #000000; border-bottom: 2px solid #000000; border-left: 2px solid #000000; text-align: center;">Total</th>
-																		</tr>
-																	</thead>
-																	<tbody style="vertical-align: top; font-size: 14px; line-height: 1.2; mso-line-height-alt: 19px;">
-                                                                    ${itemsHTML}
-																		
-																	</tbody>
-																</table>
-															</td>
-														</tr>
-													</table>
-													<div class="spacer_block block-2" style="height:25px;line-height:25px;font-size:1px;">&#8202;</div>
-												</td>
-											</tr>
-										</tbody>
+										<table class="row row-10" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-position: center top;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #cfdddf; color: #000000; width: 680px; margin: 0 auto;" width="680">
+										${itemsHTML}
 									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 								</td>
 							</tr>
 						</tbody>
@@ -554,7 +584,7 @@ const sendInvoiceEmail = async ({ email, products, totalAmount, orderId,mongoOrd
 														<tr>
 															<td class="pad" style="padding-bottom:20px;padding-left:10px;padding-right:10px;padding-top:10px;">
 																<div style="color:#fbfbfb;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-size:14px;line-height:1.8;text-align:left;mso-line-height-alt:25px;">
-																	<p style="margin: 0; word-break: break-word;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.,</p>
+																	<p style="margin: 0; word-break: break-word;">Thank you for shopping with us at TreandHaven!</p>
 																</div>
 															</td>
 														</tr>
