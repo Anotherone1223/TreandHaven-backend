@@ -53,18 +53,14 @@ app.use('/api/reviews', reviewRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/stats', statsRoutes)
 
-
+app.get('/', (req, res) => {
+        res.send('Hello World!')
+    })
 
 main().then(() => console.log("Mongodb is connected")).catch(err => console.log(err));
 
 async function main() {
     await mongoose.connect(process.env.DB_URL);
-
-    app.get('/', (req, res) => {
-        res.send('Hello World!')
-    })
-
-    // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
 app.post("/uploadImage", (req, res) => {
